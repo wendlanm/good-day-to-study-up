@@ -30,7 +30,6 @@ def add_score(new_score):
     formatted_data = new_score.decode('utf-8')
     formatted_data = formatted_data.replace("\'", "\"")
     formatted_data = json.loads(formatted_data)
-    print(f"type: {type(formatted_data)}")
     leaderboard = get_leaderboard(return_dict=True)
     leaderboard["leaderboard"].append(formatted_data)
     write_leaderboard(leaderboard)
@@ -48,7 +47,6 @@ while True:
 
     if message == b"get_leaderboard":
         leaderboard = get_leaderboard()
-        time.sleep(5)
         socket.send(leaderboard)
     elif message == b"add_to_leaderboard":
         socket.send(b"ready")

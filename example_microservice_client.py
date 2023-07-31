@@ -4,6 +4,7 @@
 
 import zmq
 import time
+import json
 
 
 def convert_dict_to_bytes(input_dict):
@@ -19,13 +20,14 @@ socket.connect("tcp://localhost:8888")
 print("Connected!")
 
 # Request the current leaderboard
-time.sleep(10)
 print("Sending request for current leaderboard")
 socket.send(b"get_leaderboard")
 
 # Get the reply
 leaderboard_data = socket.recv()
-json_data = leaderboard_data.decode('utf-8')
+leaderboard_data = leaderboard_data.decode('utf-8').replace("\'", "\"")
+json_data = json.loads(leaderboard_data)
+print(f"type: {type(json_data)}")
 print(f"Received leaderboard data: {json_data}")
 
 # Add new data to leaderboard
