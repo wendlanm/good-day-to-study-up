@@ -1,6 +1,6 @@
 **Communication contract:**
 
-1.) Clear instructions for how to programmatically REQUEST data from the microservice (including example call)
+1.) Clear instructions for how to programmatically REQUEST data from the microservice (including example call).
 
 To request data from the leaderboard microservice, set up a ZeroMQ client instance and send "get_leaderboard" formatted as bytes as shown below:
 
@@ -30,4 +30,21 @@ if response == b"ready":
 
 2.) Clear instructions for how to programmatically RECEIVE data from the microservice you implemented.
 
+To receive the leaderboard data, simply set up the ZeroMQ client as shown in part 1 and decode the data.
+
+```
+socket.send(b"get_leaderboard")
+leaderboard_data = socket.recv()
+leaderboard_data = leaderboard_data.decode('utf-8')
+```
+
+Note that the leaderboard_data will still be formatted as a string at this point. If you want to utilize the data as a dict, you will need to implement something like the following:
+
+```
+leaderboard_data = socket.recv()
+leaderboard_data = leaderboard_data.decode('utf-8').replace("\'", "\"")
+json_data = json.loads(leaderboard_data)
+```
+
 3.) UML sequence diagram showing how requesting and receiving data works. Make it detailed enough that your partner (and your grader) will understand.
+
