@@ -48,3 +48,5 @@ json_data = json.loads(leaderboard_data)
 
 3.) UML sequence diagram showing how requesting and receiving data works. Make it detailed enough that your partner (and your grader) will understand.
 
+<img width="306" alt="Screen Shot 2023-07-31 at 11 58 46 AM" src="https://github.com/wendlanm/good-day-to-study-up/assets/91234789/1abf0a1e-c248-408c-a25e-ec0f7d0d988f">
+
