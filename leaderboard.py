@@ -1,5 +1,4 @@
 # Microservice implementation
-# CS361 Summer 2023 Assignment 9
 # Michael Wendland
 
 import zmq
@@ -53,7 +52,6 @@ while True:
         new_data = socket.recv()
         print(f"Preparing to add {new_data} to leaderboard")
         add_score(new_data)
-        time.sleep(5)
         socket.send(b"added")
 
-    time.sleep(5)
+    time.sleep(1)
